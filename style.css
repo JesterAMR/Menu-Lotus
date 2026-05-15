@@ -1,0 +1,97 @@
+:root {
+    --fondo: #0a0a0a;
+    --dorado: #FADB5F;
+    --blanco: #ffffff;
+    --gris: #b0b0b0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--fondo);
+    color: var(--blanco);
+    padding: 15px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.logo {
+    color: var(--dorado);
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.categorias {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 10px 0 20px 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--fondo);
+    z-index: 100;
+}
+
+.btn-filtro {
+    background: transparent;
+    color: var(--blanco);
+    border: 1px solid #333;
+    padding: 10px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.btn-filtro.activo {
+    background-color: var(--dorado);
+    color: #000;
+    border-color: var(--dorado);
+    font-weight: bold;
+}
+
+.grid-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.producto {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid var(--dorado);
+}
+
+.producto-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.nombre {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.precio {
+    color: var(--dorado);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.descripcion {
+    font-size: 0.9rem;
+    color: var(--gris);
+    margin-top: 6px;
+    line-height: 1.4;
+}
