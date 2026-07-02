@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// 2. REEMPLAZA ESTE BLOQUE CON TUS DATOS REALES DE FIREBASE CONSOLE
+// 2. Mantén aquí tus datos reales de tu Firebase Console
 const firebaseConfig = {
     apiKey: "AIzaSyB_zLg48d8xaFcdLw1jxtWFjAkQVIZYkNU",
     authDomain: "lotus-menu-admin.firebaseapp.com",
@@ -39,24 +39,28 @@ async function cargarMenuDesdeFirebase() {
             boton.className = "btn-filtro";
             boton.innerText = catData.nombre;
             
-            // Asignamos el evento click a cada botón dinámico
             boton.addEventListener("click", (e) => filtrar(catData.nombre, e.target));
             contenedorBotones.appendChild(boton);
         });
 
         // B. Traer Productos de la base de datos
         const prodSnapshot = await getDocs(collection(db, "productos"));
-        menuProductos = []; // Limpiamos el arreglo local
+        menuProductos = []; 
         
         prodSnapshot.forEach(doc => {
             const prodData = doc.data();
-            // Solo añadimos el producto si está marcado como disponible
             if (prodData.disponible !== false) {
                 menuProductos.push(prodData);
             }
         });
 
-        // C. Renderizado inicial mostrando todo el menú completo
+        // =========================================================================
+        // ¡AQUÍ ESTÁ EL CAMBIO! Ordenamos todo el arreglo alfabéticamente (A-Z)
+        // Usamos localeCompare para que ordene bien letras con acentos o caracteres especiales
+        // =========================================================================
+        menuProductos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+        // C. Renderizado inicial mostrando todo el menú completo y ya ordenado
         renderizarMenu(menuProductos);
 
     } catch (error) {
@@ -84,15 +88,15 @@ function renderizarMenu(lista) {
 
 // 7. Función para filtrar por categorías al hacer click
 function filtrar(categoriaNombre, botonPresionado) {
-    // Actualizar estados visuales de los botones
     const botones = document.querySelectorAll(".btn-filtro");
     botones.forEach(b => b.classList.remove("activo"));
     botonPresionado.classList.add("activo");
 
-    // Filtrar la lista en memoria
     if (categoriaNombre === 'Todos') {
         renderizarMenu(menuProductos);
     } else {
+        // Al filtrar, como 'menuProductos' ya está ordenado de la A a la Z,
+        // el sub-arreglo mantendrá automáticamente ese orden alfabético.
         const filtrados = menuProductos.filter(i => i.categoriaNombre === categoriaNombre);
         renderizarMenu(filtrados);
     }
