@@ -4,12 +4,12 @@ import { getFirestore, collection, getDocs, query, orderBy } from "https://www.g
 
 // 2. REEMPLAZA ESTE BLOQUE CON TUS DATOS REALES DE FIREBASE CONSOLE
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+    apiKey: "AIzaSyB_zLg48d8xaFcdLw1jxtWFjAkQVIZYkNU",
+    authDomain: "lotus-menu-admin.firebaseapp.com",
+    projectId: "lotus-menu-admin",
+    storageBucket: "lotus-menu-admin.firebasestorage.app",
+    messagingSenderId: "592433653763",
+    appId: "1:592433653763:web:d85a46876961e4bfd98636"
 };
 
 // 3. Inicializamos Firebase y Firestore
