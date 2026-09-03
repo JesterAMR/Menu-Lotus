@@ -74,13 +74,23 @@ function renderizarMenu(lista) {
     contenedorMenu.innerHTML = "";
     lista.forEach(item => {
         const div = document.createElement("div");
-        div.className = "producto";
+        div.className = "producto"; 
+
+        let imagenHtml = '';
+        // Validamos si la base de datos devolvió una URL de imagen
+        if (item.imagenUrl) {
+            imagenHtml = `<img src="${item.imagenUrl}" class="img-producto" alt="${item.nombre}">`;
+        }
+
         div.innerHTML = `
-            <div class="producto-header">
-                <span class="nombre">${item.nombre}</span>
-                <span class="precio">C$ ${item.precio}</span>
+            ${imagenHtml}
+            <div class="info-producto">
+                <div class="producto-header">
+                    <span class="nombre">${item.nombre}</span>
+                    <span class="precio">C$ ${item.precio}</span>
+                </div>
+                ${item.descripcion ? `<p class="descripcion">${item.descripcion}</p>` : ''}
             </div>
-            ${item.descripcion ? `<p class="descripcion">${item.descripcion}</p>` : ''}
         `;
         contenedorMenu.appendChild(div);
     });

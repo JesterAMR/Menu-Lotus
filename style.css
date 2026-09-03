@@ -123,3 +123,10 @@ header {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.img-producto {
+  width: 100%;
+  height: 180px; 
+  object-fit: cover; /* Esta es la propiedad mágica que recorta fotos horizontales/verticales sin deformarlas */
+  border-radius: 12px 12px 0 0; /* Bordes redondeados superiores */
+}
